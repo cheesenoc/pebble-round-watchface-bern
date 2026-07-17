@@ -1,0 +1,26 @@
+{
+  "name": "pebble-round-watchface-bern",
+  "author": "cheesenoc",
+  "version": "1.0.0",
+  "keywords": ["pebble-app"],
+  "private": true,
+  "dependencies": {},
+  "pebble": {
+    "displayName": "Bern",
+    "uuid": "4d74829d-583a-4930-8205-db199ea4de91",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": ["gabbro"],
+    "watchapp": {
+      "watchface": true
+    },
+    "messageKeys": [
+      "AIR_TEMP",
+      "AARE_TEMP",
+      "REQUEST_DATA"
+    ],
+    "resources": {
+      "media": []
+    }
+  }
+}
