@@ -5,15 +5,55 @@
       "name": "Twin Arc"
     },
     {
+      "id": "studies",
+      "name": "Studies"
+    },
+    {
       "id": "directions",
       "name": "Directions"
     }
   ],
   "artboards": [
     {
+      "file": "TwinArc.dc.html",
+      "title": "Twin Arc — resolved",
+      "page": "twin-arc",
+      "x": 0,
+      "y": 0,
+      "w": 300,
+      "h": 470
+    },
+    {
+      "file": "TwinArcCold.dc.html",
+      "title": "Winter",
+      "page": "twin-arc",
+      "x": 0,
+      "y": 510,
+      "w": 300,
+      "h": 334
+    },
+    {
+      "file": "TwinArcHot.dc.html",
+      "title": "Hot day",
+      "page": "twin-arc",
+      "x": 340,
+      "y": 510,
+      "w": 300,
+      "h": 334
+    },
+    {
+      "file": "TwinArcNoData.dc.html",
+      "title": "No data",
+      "page": "twin-arc",
+      "x": 680,
+      "y": 510,
+      "w": 300,
+      "h": 334
+    },
+    {
       "file": "RideCold.dc.html",
       "title": "Ride · cold",
-      "page": "twin-arc",
+      "page": "studies",
       "x": 0,
       "y": 0,
       "w": 300,
@@ -22,7 +62,7 @@
     {
       "file": "RideMild.dc.html",
       "title": "Ride · mild",
-      "page": "twin-arc",
+      "page": "studies",
       "x": 340,
       "y": 0,
       "w": 300,
@@ -31,7 +71,7 @@
     {
       "file": "RideHot.dc.html",
       "title": "Ride · hot",
-      "page": "twin-arc",
+      "page": "studies",
       "x": 680,
       "y": 0,
       "w": 300,
@@ -40,7 +80,7 @@
     {
       "file": "ParkCold.dc.html",
       "title": "Park · cold",
-      "page": "twin-arc",
+      "page": "studies",
       "x": 0,
       "y": 400,
       "w": 300,
@@ -49,7 +89,7 @@
     {
       "file": "ParkMild.dc.html",
       "title": "Park · mild",
-      "page": "twin-arc",
+      "page": "studies",
       "x": 340,
       "y": 400,
       "w": 300,
@@ -58,7 +98,7 @@
     {
       "file": "ParkHot.dc.html",
       "title": "Park · hot",
-      "page": "twin-arc",
+      "page": "studies",
       "x": 680,
       "y": 400,
       "w": 300,
@@ -112,8 +152,16 @@
   ],
   "annotations": [
     {
-      "id": "question",
+      "id": "resolved",
       "page": "twin-arc",
+      "x": 340,
+      "y": 0,
+      "w": 620,
+      "text": "Twin Arc with parked digits, resolved.\n\nOne thing was added rather than chosen by you: the grey notch at 0 °C on each arc. Parking the digits means the arcs no longer point at their own numbers, so they needed a fixed reference to be readable as gauges at all — the notch is the cheapest one that costs no space. Say the word and it comes off.\n\nThe row below is the three states the face has to survive. NO DATA was the open risk against this direction and it resolves cleanly here: both tracks stay visible, both digits go to −− in #555555, and nothing jumps when the readings land."
+    },
+    {
+      "id": "question",
+      "page": "studies",
       "x": 0,
       "y": -210,
       "w": 980,
@@ -121,7 +169,7 @@
     },
     {
       "id": "ride",
-      "page": "twin-arc",
+      "page": "studies",
       "x": 1020,
       "y": 0,
       "w": 320,
@@ -129,11 +177,11 @@
     },
     {
       "id": "park",
-      "page": "twin-arc",
+      "page": "studies",
       "x": 1020,
       "y": 400,
       "w": 320,
-      "text": "PARK — air always top, water always bottom. You learn two spots once and stop looking; the arcs become peripheral colour you read without focusing on them.\n\nAgainst: the number no longer points at anything, so each arc has to earn its place on its own. At cold values a stubby arc next to a big centred digit can look disconnected — compare Park · cold."
+      "text": "PARK — chosen. Air always top, water always bottom. You learn two spots once and stop looking; the arcs become peripheral colour you read without focusing on them.\n\nThe cost it accepts: the number no longer points at anything, so each arc has to earn its place on its own. That is what the 0 °C notch on the resolved face answers."
     },
     {
       "id": "axes",

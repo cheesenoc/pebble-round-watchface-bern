@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600;700&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #141416; -webkit-font-smoothing: antialiased;
+           font-family: "Barlow Semi Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    a { color: #00AAFF; } a:hover { color: #5555AA; }
+    .t { position: absolute; margin: 0; }
+  </style>
+</helmet>
+<div style="width: 300px; height: 334px; background: #141416; padding: 14px 14px 14px; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+
+  <div style="width: 272px; height: 272px; border-radius: 50%; border: 6px solid #2a2a2e; background: #000000; position: relative; overflow: hidden; flex-shrink: 0;">
+
+    <svg width="260" height="260" viewBox="0 0 260 260" style="position: absolute; inset: 0;">
+      <g fill="none" stroke-width="8">
+        <path d="M 18,130 A 112,112 0 0 1 242,130" stroke="#555500"></path>
+        <path d="M 18,130 A 112,112 0 0 0 242,130" stroke="#005555"></path>
+      </g>
+      <g>
+        <line x1="20.98" y1="84.84" x2="15.44" y2="82.55" stroke="#AAAAAA" stroke-width="2"></line>
+        <line x1="20.98" y1="175.16" x2="15.44" y2="177.45" stroke="#AAAAAA" stroke-width="2"></line>
+      </g>
+      <g stroke="#FFFFFF" stroke-width="2">
+        <line x1="130" y1="34" x2="130" y2="44"></line>
+        <line x1="226" y1="130" x2="216" y2="130"></line>
+        <line x1="130" y1="226" x2="130" y2="216"></line>
+        <line x1="34" y1="130" x2="44" y2="130"></line>
+      </g>
+    </svg>
+
+    <p class="t" style="left: 80px; top: 46px; width: 100px; height: 13px; line-height: 13px; text-align: center; font-size: 10px; font-weight: 600; letter-spacing: 3px; color: #555555;">BERN</p>
+
+    <div style="position: absolute; left: 101px; top: 64px; width: 58px; height: 24px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+      <svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink: 0;">
+        <circle cx="8" cy="8" r="3.2" fill="#FFAA00"></circle>
+        <g stroke="#FFAA00" stroke-width="1.6" stroke-linecap="round">
+          <line x1="8" y1="1.2" x2="8" y2="3.2"></line>
+          <line x1="8" y1="12.8" x2="8" y2="14.8"></line>
+          <line x1="1.2" y1="8" x2="3.2" y2="8"></line>
+          <line x1="12.8" y1="8" x2="14.8" y2="8"></line>
+        </g>
+      </svg>
+      <span style="font-size: 20px; font-weight: 700; color: #555555; line-height: 24px;">--°</span>
+    </div>
+
+    <div style="position: absolute; left: 101px; top: 172px; width: 58px; height: 24px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+      <svg width="20" height="12" viewBox="0 0 20 12" style="flex-shrink: 0;">
+        <path d="M1 8 Q4 4.5 7 8 T13 8 T19 8" fill="none" stroke="#00AAFF" stroke-width="1.8" stroke-linecap="round"></path>
+        <path d="M1 4 Q4 0.5 7 4 T13 4 T19 4" fill="none" stroke="#5555AA" stroke-width="1.8" stroke-linecap="round"></path>
+      </svg>
+      <span style="font-size: 20px; font-weight: 700; color: #555555; line-height: 24px;">--°</span>
+    </div>
+
+    <p class="t" style="left: 80px; top: 216px; width: 100px; height: 14px; line-height: 14px; text-align: center; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: #555555;">AUG 20</p>
+
+    <svg width="260" height="260" viewBox="0 0 260 260" style="position: absolute; inset: 0;">
+      <polygon points="130,62 135,108 130,141 125,108" transform="rotate(304.5 130 130)" fill="#000000" stroke="#000000" stroke-width="3"></polygon>
+      <polygon points="130,38 134,100 130,145 126,100" transform="rotate(54 130 130)" fill="#000000" stroke="#000000" stroke-width="3"></polygon>
+      <polygon points="130,62 135,108 130,141 125,108" transform="rotate(304.5 130 130)" fill="#FFFFFF"></polygon>
+      <polygon points="130,38 134,100 130,145 126,100" transform="rotate(54 130 130)" fill="#FFFFFF"></polygon>
+      <circle cx="130" cy="130" r="6" fill="#000000"></circle>
+      <circle cx="130" cy="130" r="4" fill="#FFFFFF"></circle>
+    </svg>
+  </div>
+
+  <div style="width: 100%; padding: 0 4px;">
+    <p style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.3px; color: #C8C8CC;">No data yet · both arcs empty</p>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":300,"height":334}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
