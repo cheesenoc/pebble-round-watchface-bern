@@ -1,14 +1,159 @@
 {
+  "pages": [
+    {
+      "id": "twin-arc",
+      "name": "Twin Arc"
+    },
+    {
+      "id": "directions",
+      "name": "Directions"
+    }
+  ],
   "artboards": [
-    { "file": "Main.dc.html",    "title": "Current — reference", "x": 0,    "y": 0, "w": 300, "h": 404 },
-    { "file": "OptionA.dc.html", "title": "A — Aare Bend",       "x": 400,  "y": 0, "w": 300, "h": 404 },
-    { "file": "OptionB.dc.html", "title": "B — Twin Arc",        "x": 740,  "y": 0, "w": 300, "h": 404 },
-    { "file": "OptionC.dc.html", "title": "C — Kiosk",           "x": 1080, "y": 0, "w": 300, "h": 404 },
-    { "file": "OptionD.dc.html", "title": "D — Baden",           "x": 1420, "y": 0, "w": 300, "h": 404 }
+    {
+      "file": "RideCold.dc.html",
+      "title": "Ride · cold",
+      "page": "twin-arc",
+      "x": 0,
+      "y": 0,
+      "w": 300,
+      "h": 334
+    },
+    {
+      "file": "RideMild.dc.html",
+      "title": "Ride · mild",
+      "page": "twin-arc",
+      "x": 340,
+      "y": 0,
+      "w": 300,
+      "h": 334
+    },
+    {
+      "file": "RideHot.dc.html",
+      "title": "Ride · hot",
+      "page": "twin-arc",
+      "x": 680,
+      "y": 0,
+      "w": 300,
+      "h": 334
+    },
+    {
+      "file": "ParkCold.dc.html",
+      "title": "Park · cold",
+      "page": "twin-arc",
+      "x": 0,
+      "y": 400,
+      "w": 300,
+      "h": 334
+    },
+    {
+      "file": "ParkMild.dc.html",
+      "title": "Park · mild",
+      "page": "twin-arc",
+      "x": 340,
+      "y": 400,
+      "w": 300,
+      "h": 334
+    },
+    {
+      "file": "ParkHot.dc.html",
+      "title": "Park · hot",
+      "page": "twin-arc",
+      "x": 680,
+      "y": 400,
+      "w": 300,
+      "h": 334
+    },
+    {
+      "file": "Main.dc.html",
+      "title": "Current — reference",
+      "page": "directions",
+      "x": 0,
+      "y": 0,
+      "w": 300,
+      "h": 420
+    },
+    {
+      "file": "OptionA.dc.html",
+      "title": "A — Aare Bend",
+      "page": "directions",
+      "x": 340,
+      "y": 0,
+      "w": 300,
+      "h": 420
+    },
+    {
+      "file": "OptionB.dc.html",
+      "title": "B — Twin Arc",
+      "page": "directions",
+      "x": 680,
+      "y": 0,
+      "w": 300,
+      "h": 420
+    },
+    {
+      "file": "OptionC.dc.html",
+      "title": "C — Kiosk",
+      "page": "directions",
+      "x": 1020,
+      "y": 0,
+      "w": 300,
+      "h": 420
+    },
+    {
+      "file": "OptionD.dc.html",
+      "title": "D — Baden",
+      "page": "directions",
+      "x": 1360,
+      "y": 0,
+      "w": 300,
+      "h": 420
+    }
   ],
   "annotations": [
-    { "id": "axes", "x": 0, "y": -190, "w": 700, "text": "Four directions, one axis each — A bets on illustration, B on analogue encoding, C on typography, D on cutting the face down to one question.\n\nAll five are drawn true size (260 × 260, gabbro) at 10:09, air 24°, Aare 19°, so they compare directly." },
-    { "id": "palette", "x": 1080, "y": -190, "w": 640, "text": "Every colour is on Pebble's 64-value palette, so all of this is drawable on-device:\n\nFFFFFF / AAAAAA / 555555 · FFAA00 air · 00AAFF Aare · 5555AA deep water · 00FFAA swim-good · 555500 + 005555 gauge tracks.\n\nType is a stand-in — on-device this is the Gothic bitmap set (14 / 18) plus LECO numerals for the big readouts in C and D." }
+    {
+      "id": "question",
+      "page": "twin-arc",
+      "x": 0,
+      "y": -210,
+      "w": 980,
+      "text": "Where should the digits sit?\n\nOne variable only: the arcs are identical between the two rows — same −5→35 °C scale, same fill lengths. Read DOWN a column to see one reading in both treatments; read ACROSS a row to see what changing temperature does to the layout."
+    },
+    {
+      "id": "ride",
+      "page": "twin-arc",
+      "x": 1020,
+      "y": 0,
+      "w": 320,
+      "text": "RIDE — the digit marks where its arc stopped, so number and bar read as one object and there is never a question which arc a number belongs to. The face feels alive.\n\nAgainst: nothing sits still. Your eye has to FIND the number before it can read it, which is the opposite of what a watch glance is for. At some readings it parks under a hand — see Ride · mild, where the minute hand crosses the air digits. And with no data there is no arc end to ride: the −− has nowhere to go."
+    },
+    {
+      "id": "park",
+      "page": "twin-arc",
+      "x": 1020,
+      "y": 400,
+      "w": 320,
+      "text": "PARK — air always top, water always bottom. You learn two spots once and stop looking; the arcs become peripheral colour you read without focusing on them.\n\nAgainst: the number no longer points at anything, so each arc has to earn its place on its own. At cold values a stubby arc next to a big centred digit can look disconnected — compare Park · cold."
+    },
+    {
+      "id": "axes",
+      "page": "directions",
+      "x": 0,
+      "y": -190,
+      "w": 1000,
+      "text": "Four directions, one axis each — A bets on illustration, B on analogue encoding, C on typography, D on cutting the face down to one question.\n\nAll five are drawn true size (260 × 260, gabbro) at 10:09, air 24°, Aare 19°, so they compare directly. B is the chosen direction; it is developed on the Twin Arc page."
+    },
+    {
+      "id": "palette",
+      "page": "directions",
+      "x": 1360,
+      "y": -190,
+      "w": 640,
+      "text": "Every colour is on Pebble's 64-value palette, so all of this is drawable on-device:\n\nFFFFFF / AAAAAA / 555555 · FFAA00 air · 00AAFF Aare · 5555AA deep water · 00FFAA swim-good · 555500 + 005555 gauge tracks.\n\nType is a stand-in — on-device this is the Gothic bitmap set (14 / 18) plus LECO numerals for the big readouts in C and D."
+    }
   ],
-  "launch": { "view": "canvas" }
+  "launch": {
+    "view": "canvas",
+    "page": "twin-arc"
+  }
 }
