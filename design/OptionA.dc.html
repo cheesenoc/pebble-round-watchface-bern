@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600;700&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #141416; -webkit-font-smoothing: antialiased;
+           font-family: "Barlow Semi Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    a { color: #00AAFF; } a:hover { color: #5555AA; }
+    .t { position: absolute; margin: 0; }
+  </style>
+</helmet>
+<div style="width: 300px; height: 404px; background: #141416; padding: 14px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+
+  <div style="width: 272px; height: 272px; border-radius: 50%; border: 6px solid #2a2a2e; background: #000000; position: relative; overflow: hidden; flex-shrink: 0;">
+
+    <svg width="260" height="260" viewBox="0 0 260 260" style="position: absolute; inset: 0;">
+      <clipPath id="a-face"><circle cx="130" cy="130" r="130"></circle></clipPath>
+
+      <g clip-path="url(#a-face)" fill="none" stroke-linecap="round">
+        <path d="M -4,124 C 26,136 34,176 50,200 C 72,232 124,242 162,224 C 200,206 216,172 228,144 C 236,126 248,116 262,112" stroke="#5555AA" stroke-width="13"></path>
+        <path d="M -4,120 C 26,132 34,172 50,196 C 72,228 124,238 162,220 C 200,202 216,168 228,140 C 236,122 248,112 262,108" stroke="#00AAFF" stroke-width="9"></path>
+      </g>
+
+      <g stroke="#FFFFFF" stroke-width="3">
+        <line x1="130" y1="10" x2="130" y2="24"></line>
+        <line x1="250" y1="130" x2="236" y2="130"></line>
+        <line x1="130" y1="250" x2="130" y2="236"></line>
+        <line x1="10" y1="130" x2="24" y2="130"></line>
+      </g>
+      <g fill="#555555">
+        <circle cx="186.5" cy="32.14" r="1.5"></circle>
+        <circle cx="227.86" cy="73.5" r="1.5"></circle>
+        <circle cx="227.86" cy="186.5" r="1.5"></circle>
+        <circle cx="186.5" cy="227.86" r="1.5"></circle>
+        <circle cx="73.5" cy="227.86" r="1.5"></circle>
+        <circle cx="32.14" cy="186.5" r="1.5"></circle>
+        <circle cx="32.14" cy="73.5" r="1.5"></circle>
+        <circle cx="73.5" cy="32.14" r="1.5"></circle>
+      </g>
+
+      <circle cx="130" cy="64" r="4" fill="#FFAA00"></circle>
+      <g stroke="#FFAA00" stroke-width="2">
+        <line x1="130" y1="54" x2="130" y2="57"></line>
+        <line x1="130" y1="71" x2="130" y2="74"></line>
+        <line x1="120" y1="64" x2="123" y2="64"></line>
+        <line x1="137" y1="64" x2="140" y2="64"></line>
+      </g>
+
+      <g>
+        <polygon points="130,58 135,106 130,142 125,106" transform="rotate(304.5 130 130)" fill="#000000" stroke="#000000" stroke-width="3"></polygon>
+        <polygon points="130,32 134,98 130,146 126,98" transform="rotate(54 130 130)" fill="#000000" stroke="#000000" stroke-width="3"></polygon>
+        <polygon points="130,58 135,106 130,142 125,106" transform="rotate(304.5 130 130)" fill="#FFFFFF"></polygon>
+        <polygon points="130,32 134,98 130,146 126,98" transform="rotate(54 130 130)" fill="#FFFFFF"></polygon>
+        <circle cx="130" cy="130" r="6" fill="#000000"></circle>
+        <circle cx="130" cy="130" r="4" fill="#FFFFFF"></circle>
+      </g>
+    </svg>
+
+    <p class="t" style="left: 80px; top: 30px; width: 100px; height: 14px; line-height: 14px; text-align: center; font-size: 11px; font-weight: 500; letter-spacing: 1px; color: #555555;">AUG 20</p>
+
+    <p class="t" style="left: 100px; top: 84px; width: 60px; height: 22px; line-height: 22px; text-align: center; font-size: 19px; font-weight: 700; color: #FFFFFF;">24°</p>
+
+    <p class="t" style="left: 68px; top: 154px; width: 120px; height: 38px; line-height: 38px; text-align: center; font-size: 34px; font-weight: 700; color: #FFFFFF;">19°</p>
+    <p class="t" style="left: 78px; top: 194px; width: 100px; height: 13px; line-height: 13px; text-align: center; font-size: 10px; font-weight: 600; letter-spacing: 2.5px; color: #AAAAAA;">AARE</p>
+  </div>
+
+  <div style="width: 100%; padding: 0 4px;">
+    <p style="margin: 0 0 6px; font-size: 13px; font-weight: 700; letter-spacing: 0.3px; color: #F2F2EF;">A — Aare Bend</p>
+    <p style="margin: 0; font-size: 11.5px; font-weight: 400; line-height: 1.5; color: #8B8B91; text-wrap: pretty;">The river's loop round the Altstadt <em>is</em> the dial, so the shape carries the identity and “BERN” comes off. Trade: least conventional, and the water crowds the hands below the centre.</p>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":300,"height":404}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

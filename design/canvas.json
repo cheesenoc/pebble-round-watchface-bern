@@ -1,0 +1,14 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html",    "title": "Current — reference", "x": 0,    "y": 0, "w": 300, "h": 404 },
+    { "file": "OptionA.dc.html", "title": "A — Aare Bend",       "x": 400,  "y": 0, "w": 300, "h": 404 },
+    { "file": "OptionB.dc.html", "title": "B — Twin Arc",        "x": 740,  "y": 0, "w": 300, "h": 404 },
+    { "file": "OptionC.dc.html", "title": "C — Kiosk",           "x": 1080, "y": 0, "w": 300, "h": 404 },
+    { "file": "OptionD.dc.html", "title": "D — Baden",           "x": 1420, "y": 0, "w": 300, "h": 404 }
+  ],
+  "annotations": [
+    { "id": "axes", "x": 0, "y": -190, "w": 700, "text": "Four directions, one axis each — A bets on illustration, B on analogue encoding, C on typography, D on cutting the face down to one question.\n\nAll five are drawn true size (260 × 260, gabbro) at 10:09, air 24°, Aare 19°, so they compare directly." },
+    { "id": "palette", "x": 1080, "y": -190, "w": 640, "text": "Every colour is on Pebble's 64-value palette, so all of this is drawable on-device:\n\nFFFFFF / AAAAAA / 555555 · FFAA00 air · 00AAFF Aare · 5555AA deep water · 00FFAA swim-good · 555500 + 005555 gauge tracks.\n\nType is a stand-in — on-device this is the Gothic bitmap set (14 / 18) plus LECO numerals for the big readouts in C and D." }
+  ],
+  "launch": { "view": "canvas" }
+}

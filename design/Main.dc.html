@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600;700&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #141416; -webkit-font-smoothing: antialiased;
+           font-family: "Barlow Semi Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    a { color: #00AAFF; } a:hover { color: #5555AA; }
+    .t { position: absolute; margin: 0; }
+  </style>
+</helmet>
+<div style="width: 300px; height: 404px; background: #141416; padding: 14px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+
+  <div style="width: 272px; height: 272px; border-radius: 50%; border: 6px solid #2a2a2e; background: #000000; position: relative; overflow: hidden; flex-shrink: 0;">
+
+    <svg width="260" height="260" viewBox="0 0 260 260" style="position: absolute; inset: 0;">
+      <g stroke="#FFFFFF" stroke-width="3">
+        <line x1="130" y1="10" x2="130" y2="24"></line>
+        <line x1="250" y1="130" x2="236" y2="130"></line>
+        <line x1="130" y1="250" x2="130" y2="236"></line>
+        <line x1="10" y1="130" x2="24" y2="130"></line>
+      </g>
+      <g stroke="#555555" stroke-width="2">
+        <line x1="190" y1="26.08" x2="186.5" y2="32.14"></line>
+        <line x1="233.92" y1="70" x2="227.86" y2="73.5"></line>
+        <line x1="233.92" y1="190" x2="227.86" y2="186.5"></line>
+        <line x1="190" y1="233.92" x2="186.5" y2="227.86"></line>
+        <line x1="70" y1="233.92" x2="73.5" y2="227.86"></line>
+        <line x1="26.08" y1="190" x2="32.14" y2="186.5"></line>
+        <line x1="26.08" y1="70" x2="32.14" y2="73.5"></line>
+        <line x1="70" y1="26.08" x2="73.5" y2="32.14"></line>
+      </g>
+
+      <circle cx="202" cy="110" r="4" fill="#FFAA00"></circle>
+      <g stroke="#FFAA00" stroke-width="2">
+        <line x1="202" y1="100" x2="202" y2="103"></line>
+        <line x1="202" y1="117" x2="202" y2="120"></line>
+        <line x1="192" y1="110" x2="195" y2="110"></line>
+        <line x1="209" y1="110" x2="212" y2="110"></line>
+      </g>
+
+      <polyline points="48,112 50.5,109.17 53,108 55.5,109.17 58,112 60.5,114.83 63,116 65.5,114.83 68,112" fill="none" stroke="#00AAFF" stroke-width="2"></polyline>
+      <polyline points="48,107 50.5,104.88 53,104 55.5,104.88 58,107 60.5,109.12 63,110 65.5,109.12 68,107" fill="none" stroke="#5555AA" stroke-width="2"></polyline>
+
+      <rect x="90.5" y="204.5" width="79" height="19" rx="3" fill="none" stroke="#555555" stroke-width="1"></rect>
+
+      <polygon points="130,58 135,106 130,142 125,106" transform="rotate(304.5 130 130)" fill="#FFFFFF"></polygon>
+      <polygon points="130,32 134,98 130,146 126,98" transform="rotate(54 130 130)" fill="#FFFFFF"></polygon>
+      <circle cx="130" cy="130" r="4" fill="#FFFFFF"></circle>
+    </svg>
+
+    <p class="t" style="left: 100px; top: 20px; width: 60px; height: 16px; line-height: 16px; text-align: center; font-size: 13px; font-weight: 700; color: #AAAAAA;">N</p>
+    <p class="t" style="left: 80px; top: 38px; width: 100px; height: 16px; line-height: 16px; text-align: center; font-size: 13px; font-weight: 400; color: #555555;">BERN</p>
+
+    <p class="t" style="left: 172px; top: 118px; width: 60px; height: 22px; line-height: 22px; text-align: center; font-size: 18px; font-weight: 700; color: #FFFFFF;">24°</p>
+    <p class="t" style="left: 172px; top: 142px; width: 60px; height: 16px; line-height: 16px; text-align: center; font-size: 13px; font-weight: 400; color: #555555;">AIR</p>
+
+    <p class="t" style="left: 28px; top: 118px; width: 60px; height: 22px; line-height: 22px; text-align: center; font-size: 18px; font-weight: 700; color: #FFFFFF;">19°</p>
+    <p class="t" style="left: 28px; top: 142px; width: 60px; height: 16px; line-height: 16px; text-align: center; font-size: 13px; font-weight: 400; color: #555555;">AARE</p>
+
+    <p class="t" style="left: 90px; top: 206px; width: 80px; height: 16px; line-height: 16px; text-align: center; font-size: 13px; font-weight: 700; color: #FFFFFF;">AUG 20</p>
+  </div>
+
+  <div style="width: 100%; padding: 0 4px;">
+    <p style="margin: 0 0 6px; font-size: 13px; font-weight: 700; letter-spacing: 0.3px; color: #F2F2EF;">Current — reference</p>
+    <p style="margin: 0; font-size: 11.5px; font-weight: 400; line-height: 1.5; color: #8B8B91; text-wrap: pretty;">What ships today: symmetric readouts at 3 and 9, boxed date, hands sweeping over both. Everything below is measured against this.</p>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":300,"height":404}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
