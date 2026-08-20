@@ -2,3 +2,6 @@ build/
 .pebble-sdk/
 *.pbw
 node_modules/
+
+# Generated design canvas (2MB editor payload, rebuilt from design/*.dc.html)
+design/bern-watchface-dials.html
