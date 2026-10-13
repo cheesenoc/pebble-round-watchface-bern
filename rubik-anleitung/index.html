@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zauberwürfel lösen</title>
+<style>
+  :root {
+    --bg: #fff8e7;
+    --card: #ffffff;
+    --ink: #1d2433;
+    --muted: #5b6579;
+    --accent: #1457c8;
+    --line: #e6dcc3;
+    --hl: #ffe08a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+    font-size: 18px;
+    line-height: 1.4;
+  }
+  header {
+    text-align: center;
+    padding: 28px 16px 12px;
+  }
+  header h1 { margin: 0; font-size: clamp(30px, 7vw, 48px); letter-spacing: .5px; }
+  header p { margin: 4px 0 0; color: var(--muted); font-size: 20px; }
+  nav {
+    position: sticky; top: 0; z-index: 5;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+    padding: 10px 16px;
+    background: rgba(255, 248, 231, .92);
+    backdrop-filter: blur(4px);
+    border-bottom: 2px solid var(--line);
+  }
+  nav a {
+    display: grid; place-items: center;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--accent); color: #fff; font-weight: 700; text-decoration: none;
+  }
+  nav a.info { background: #f5a300; color: #1d2433; }
+  main { max-width: 860px; margin: 0 auto; padding: 16px; display: grid; gap: 20px; }
+  section.card {
+    background: var(--card);
+    border: 3px solid var(--line);
+    border-radius: 22px;
+    padding: 18px;
+    scroll-margin-top: 70px;
+  }
+  .head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .num {
+    flex: none; width: 48px; height: 48px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--accent); color: #fff; font-size: 26px; font-weight: 800;
+  }
+  .num.info { background: #f5a300; color: var(--ink); }
+  h2 { margin: 0; font-size: 26px; }
+  .hint { margin: 6px 0 12px; color: var(--muted); }
+  .row {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+    gap: 10px 14px; margin: 10px 0;
+  }
+  .pic { text-align: center; }
+  .pic svg { display: block; margin: 0 auto; }
+  .pic small { display: block; color: var(--muted); font-size: 15px; margin-top: 2px; }
+  .arrow { font-size: 34px; color: var(--accent); font-weight: 800; }
+  .tiles { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .tile { text-align: center; font-weight: 800; font-size: 16px; }
+  .tile svg { display: block; }
+  .repeat {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--hl); border-radius: 999px; padding: 4px 14px;
+    font-weight: 800; font-size: 20px;
+  }
+  .sep { border: 0; border-top: 2px dashed var(--line); margin: 14px 0; }
+  .done { text-align: center; font-size: 28px; font-weight: 800; padding: 10px 0 4px; }
+  footer { text-align: center; color: var(--muted); padding: 8px 16px 32px; font-size: 15px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🧩 Zauberwürfel lösen</h1>
+  <p>Schritt für Schritt</p>
+</header>
+
+<nav id="nav"></nav>
+<main id="main"></main>
+<footer>Tipp: Lass dir Zeit. Jeder Schritt klappt mit Üben!</footer>
+
+<script>
+/* ---------- Farben ---------- */
+const COL = { W:'#f4f4f4', Y:'#ffd500', R:'#d6202f', O:'#ff7a00', B:'#1457c8', G:'#16a34a', X:'#c9ced6' };
+
+/* ---------- Würfel von schräg oben (oben, vorne, rechts) ---------- */
+function iso({ U='XXXXXXXXX', F='XXXXXXXXX', R='XXXXXXXXX', hl=[], size=170, letters=false }) {
+  const Bk=[100,20], Rv=[170,60], Fv=[100,100], Lv=[30,60], LL=[30,140], Bt=[100,180];
+  const add=(p,a,v)=>[p[0]+a*v[0], p[1]+a*v[1]];
+  const sub=(a,b)=>[a[0]-b[0], a[1]-b[1]];
+  const pt = {
+    U:(a,b)=>{ const p=add(Lv,a,sub(Fv,Lv)); return add(p,1-b,sub(Bk,Lv)); },
+    F:(a,b)=>{ const p=add(Lv,a,sub(Fv,Lv)); return add(p,b,sub(LL,Lv)); },
+    R:(a,b)=>{ const p=add(Fv,a,sub(Rv,Fv)); return add(p,b,sub(Bt,Fv)); }
+  };
+  const faces = { U, F, R };
+  let normal = '', marked = '';
+  for (const f of ['U','F','R']) {
+    for (let i = 0; i < 9; i++) {
+      const r = Math.floor(i/3), c = i%3, g = 0.04;
+      const pts = [[c/3+g,r/3+g],[(c+1)/3-g,r/3+g],[(c+1)/3-g,(r+1)/3-g],[c/3+g,(r+1)/3-g]]
+        .map(([a,b]) => pt[f](a,b).map(n=>n.toFixed(1)).join(',')).join(' ');
+      const on = hl.includes(f+i);
+      const poly = `<polygon points="${pts}" fill="${COL[faces[f][i]]}" stroke="${on?'#111':'#2b2b2b'}" stroke-width="${on?4.5:1.2}" stroke-linejoin="round"/>`;
+      if (on) marked += poly; else normal += poly;
+    }
+  }
+  const outline = `<polygon points="${[Bk,Rv,[170,140],Bt,LL,Lv].map(p=>p.join(',')).join(' ')}" fill="none" stroke="#111" stroke-width="3" stroke-linejoin="round"/>`;
+  let txt = '';
+  if (letters) {
+    const L = (s,x,y)=>`<text x="${x}" y="${y}" text-anchor="middle" font-size="30" font-weight="800" fill="#fff" stroke="#111" stroke-width="1.2" paint-order="stroke">${s}</text>`;
+    txt = L('U',100,67)+L('F',65,128)+L('R',135,128);
+  }
+  return `<svg width="${size}" height="${size*190/200}" viewBox="0 0 200 190" role="img">${normal}${marked}${outline}${txt}</svg>`;
+}
+
+/* ---------- Draufsicht mit Rand (für gelbe Seite) ---------- */
+function topView({ u='XXXXXXXXX', t='X', r='X', b='X', l='X', size=130 }) {
+  const cell=28, gap=2, s=9, x0=s+gap;
+  const rect=(x,y,w,h,c)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="3" fill="${COL[c]}" stroke="#2b2b2b" stroke-width="1.2"/>`;
+  let out = '';
+  for (let i=0;i<9;i++) out += rect(x0+(i%3)*(cell+gap), x0+Math.floor(i/3)*(cell+gap), cell, cell, u[i]);
+  const mids = (m)=>['X',m,'X'];
+  mids(t).forEach((c,i)=> out += rect(x0+i*(cell+gap), 0, cell, s, c));
+  mids(b).forEach((c,i)=> out += rect(x0+i*(cell+gap), x0+3*(cell+gap)-gap+gap, cell, s, c));
+  mids(l).forEach((c,i)=> out += rect(0, x0+i*(cell+gap), s, cell, c));
+  mids(r).forEach((c,i)=> out += rect(x0+3*(cell+gap)-gap+gap, x0+i*(cell+gap), s, cell, c));
+  const total = x0*2 + 3*cell + 2*gap + gap;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${total} ${total}" role="img">${out}</svg>`;
+}
+
+/* ---------- Drehungs-Kärtchen ---------- */
+function tile(m) {
+  const face = m[0], prime = m.includes("'"), two = m.includes('2');
+  const gx=8, gy=8, g=48, c=g/3, ink='#111';
+  let hlRect = '', arrow = '';
+  const head=(x,y,dx,dy)=>{ const n=Math.hypot(dx,dy); dx/=n; dy/=n;
+    const px=-dy, py=dx, L=10, W=7;
+    return `<polygon points="${x+dx*L},${y+dy*L} ${x-px*W},${y-py*W} ${x+px*W},${y+py*W}" fill="${ink}"/>`; };
+  const line=(x1,y1,x2,y2)=>{ const dx=x2-x1, dy=y2-y1, n=Math.hypot(dx,dy), ux=dx/n, uy=dy/n;
+    return `<line x1="${x1}" y1="${y1}" x2="${x2-ux*4}" y2="${y2-uy*4}" stroke="${ink}" stroke-width="4.5" stroke-linecap="round"/>`+head(x2-ux*8,y2-uy*8,ux,uy); };
+  const col=(i)=>gx+c*i+c/2, row=(i)=>gy+c*i+c/2;
+  const dirs = { R:'up', L:'down', U:'left', D:'right' };
+  let dir = dirs[face];
+  if (prime && dir) dir = {up:'down',down:'up',left:'right',right:'left'}[dir];
+  if (face==='R'||face==='L') {
+    const i = face==='R'?2:0;
+    hlRect = `<rect x="${gx+c*i}" y="${gy}" width="${c}" height="${g}" fill="var(--hl)"/>`;
+    arrow = dir==='up' ? line(col(i),gy+g-5,col(i),gy+5) : line(col(i),gy+5,col(i),gy+g-5);
+  } else if (face==='U'||face==='D') {
+    const i = face==='U'?0:2;
+    hlRect = `<rect x="${gx}" y="${gy+c*i}" width="${g}" height="${c}" fill="var(--hl)"/>`;
+    arrow = dir==='left' ? line(gx+g-5,row(i),gx+5,row(i)) : line(gx+5,row(i),gx+g-5,row(i));
+  } else { // F
+    hlRect = `<rect x="${gx}" y="${gy}" width="${g}" height="${g}" fill="var(--hl)"/>`;
+    const cx=gx+g/2, cy=gy+g/2, r=14, cw=!prime;
+    const a0 = cw ? -150 : -30, a1 = cw ? 100 : 250;               // Winkel in Grad (Bildschirm, y nach unten)
+    const P=(a)=>[cx+r*Math.cos(a*Math.PI/180), cy+r*Math.sin(a*Math.PI/180)];
+    const [sx,sy]=P(a0), [ex,ey]=P(a1);
+    const tang=(a)=> cw ? [-Math.sin(a*Math.PI/180), Math.cos(a*Math.PI/180)] : [Math.sin(a*Math.PI/180), -Math.cos(a*Math.PI/180)];
+    const [tx,ty]=tang(a1);
+    arrow = `<path d="M${sx},${sy} A${r},${r} 0 1 ${cw?1:0} ${ex},${ey}" fill="none" stroke="${ink}" stroke-width="4.5" stroke-linecap="round"/>`+head(ex+tx*2,ey+ty*2,tx,ty);
+  }
+  let grid = '';
+  for (let i=1;i<3;i++) grid += `<line x1="${gx+c*i}" y1="${gy}" x2="${gx+c*i}" y2="${gy+g}" stroke="#9aa3b2" stroke-width="1.2"/><line x1="${gx}" y1="${gy+c*i}" x2="${gx+g}" y2="${gy+c*i}" stroke="#9aa3b2" stroke-width="1.2"/>`;
+  const badge = two ? `<circle cx="${gx+g}" cy="${gy}" r="9" fill="#d6202f"/><text x="${gx+g}" y="${gy+5}" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">2</text>` : '';
+  return `<div class="tile"><svg width="64" height="64" viewBox="0 0 64 64" role="img"><rect x="${gx}" y="${gy}" width="${g}" height="${g}" fill="#fff"/>${hlRect}${grid}<rect x="${gx}" y="${gy}" width="${g}" height="${g}" fill="none" stroke="#111" stroke-width="2.5"/>${arrow}${badge}</svg>${m}</div>`;
+}
+const tiles = (moves)=>`<div class="tiles">${moves.map(tile).join('')}</div>`;
+const pic = (svg, cap='')=>`<div class="pic">${svg}${cap?`<small>${cap}</small>`:''}</div>`;
+const rep = (t)=>`<span class="repeat">↻ ${t}</span>`;
+const ARROW = '<div class="arrow">➜</div>';
+
+/* ---------- Inhalt ---------- */
+const steps = [];
+
+steps.push({ id:'start', num:'?', info:true, title:'Das musst du wissen', html: `
+  <div class="row">
+    ${pic(iso({U:'XXXXWXXXX',F:'XXXXGXXXX',R:'XXXXRXXXX',hl:['U4','F4','R4'],size:130}),'Mitte (1 Farbe)')}
+    ${pic(iso({U:'XXXXXXXWX',F:'XWXXXXXXX',R:'XXXXXXXXX',hl:['U7','F1'],size:130}),'Kante (2 Farben)')}
+    ${pic(iso({U:'XXXXXXXXW',F:'XXGXXXXXX',R:'RXXXXXXXX',hl:['U8','F2','R0'],size:130}),'Ecke (3 Farben)')}
+  </div>
+  <p class="hint">Die Mitten bewegen sich nie.</p>
+  <hr class="sep">
+  <div class="row">
+    ${pic(iso({U:'WWWWWWWWW',F:'GGGGGGGGG',R:'RRRRRRRRR',size:150,letters:true}),'U = oben · F = vorne · R = rechts<br>L = links · D = unten')}
+  </div>
+  <div class="tiles">${['R',"R'",'L',"L'",'U',"U'",'D',"D'",'F',"F'",'R2'].map(tile).join('')}</div>
+  <p class="hint" style="text-align:center">Pfeil = Drehrichtung. Strich ' = andersherum. Rote 2 = zweimal drehen.</p>` });
+
+steps.push({ id:'s1', title:'Weißes Kreuz', html: `
+  <div class="row">
+    ${pic(iso({U:'XWXWWWXWX',F:'XGXXGXXXX',R:'XRXXRXXXX',size:190}),'Ziel')}
+  </div>
+  <p class="hint" style="text-align:center">Jede weiße Kante muss zur Mittelfarbe passen.</p>
+  <div class="row">
+    <span class="hint" style="margin:0">Weiß unten, genau unter dem Platz?</span> ${tiles(['F2'])}
+  </div>` });
+
+steps.push({ id:'s2', title:'Umdrehen', html: `
+  <div class="row">
+    ${pic(iso({U:'WWWWWWWWW',F:'GGGGGGGGG',R:'RRRRRRRRR',size:150}))}
+    ${ARROW}
+    ${pic(iso({U:'YYYYYYYYY',F:'BBBBBBBBB',R:'RRRRRRRRR',size:150}),'Weiß ist jetzt unten')}
+  </div>` });
+
+steps.push({ id:'s3', title:'Weiße Ecken', html: `
+  <div class="row">
+    ${pic(iso({U:'XXXXYXXXB',F:'XXWXBXXXX',R:'RXXXRXXXX',hl:['U8','F2','R0'],size:150}),'Ecke oben vorne rechts')}
+    <div>${tiles(['R','U',"R'","U'"])}<div style="text-align:center;margin-top:8px">${rep('1–5×')}</div></div>
+  </div>
+  <p class="hint" style="text-align:center">Bis Weiß nach unten zeigt. Dann oben (U) drehen für die nächste Ecke.</p>
+  <hr class="sep">
+  <div class="row">
+    ${pic(iso({U:'XXXXYXXXX',F:'XXXXBXBBB',R:'XXXXRXRRR',size:150}),'Ziel: unten ganz weiß')}
+  </div>` });
+
+steps.push({ id:'s4', title:'Mittlere Reihe', html: `
+  <p class="hint">Oben eine Kante <b>ohne Gelb</b>. Vorne passend drehen (U), dann:</p>
+  <div class="row">
+    ${pic(iso({U:'XXXXYXXRX',F:'XBXXBXXXX',R:'XXXXRXXXX',hl:['U7','F1'],size:130}))}
+    ${tiles(['U','R',"U'","R'","U'","F'",'U','F'])}
+    ${pic(iso({U:'XXXXYXXXX',F:'XXXXBBXXX',R:'XXXRRXXXX',hl:['F5','R3'],size:130}))}
+  </div>
+  <p class="hint" style="text-align:center">Kante muss nach <b>rechts</b>.</p>
+  <hr class="sep">
+  <div class="row">
+    ${pic(iso({U:'XXXXYXXOX',F:'XBXXBXXXX',R:'XXXXRXXXX',hl:['U7','F1'],size:130}))}
+    ${tiles(["U'","L'",'U','L','U','F',"U'","F'"])}
+    ${pic(iso({U:'XXXXYXXXX',F:'XXXBBXXXX',R:'XXXXRXXXX',hl:['F3'],size:130}))}
+  </div>
+  <p class="hint" style="text-align:center">Kante muss nach <b>links</b>.</p>` });
+
+steps.push({ id:'s5', title:'Gelbes Kreuz', html: `
+  <div class="row">
+    ${pic(topView({u:'XXXXYXXXX'}),'Punkt')}
+    ${ARROW}
+    ${pic(topView({u:'XYXYYXXXX'}),'L (hinten + links)')}
+    ${ARROW}
+    ${pic(topView({u:'XXXYYYXXX'}),'Linie')}
+    ${ARROW}
+    ${pic(topView({u:'XYXYYYXYX'}),'Kreuz!')}
+  </div>
+  <div class="row">${tiles(['F','R','U',"R'","U'","F'"])}${rep('bis Kreuz')}</div>` });
+
+steps.push({ id:'s6', title:'Gelbe Kanten', html: `
+  <p class="hint">Dreh oben (U), bis zwei Kanten passen. Die passenden nach hinten und rechts.</p>
+  <div class="row">
+    ${pic(topView({u:'XYXYYYXYX',t:'G',r:'R',b:'O',l:'B'}))}
+    ${tiles(['R','U',"R'",'U','R','U2',"R'",'U'])}
+    ${pic(topView({u:'XYXYYYXYX',t:'G',r:'R',b:'B',l:'O'}),'Ziel')}
+  </div>
+  <div class="row">${rep('nochmal, bis alle passen')}</div>` });
+
+steps.push({ id:'s7', title:'Gelbe Ecken umsetzen', html: `
+  <p class="hint">Eine Ecke sitzt richtig (egal wie gedreht)? Nach vorne rechts oben. Keine? Einmal machen.</p>
+  <div class="row">
+    ${pic(iso({U:'XYXYYYXYB',F:'XXRXBXXXX',R:'YXXXRXXXX',hl:['U8','F2','R0'],size:140}),'Richtig platziert')}
+    ${tiles(['U','R',"U'","L'",'U',"R'","U'",'L'])}
+  </div>
+  <div class="row">${rep('bis alle 4 Ecken am richtigen Platz')}</div>` });
+
+steps.push({ id:'s8', title:'Gelbe Ecken drehen', html: `
+  <div class="row">
+    ${pic(iso({U:'XYXYYYXYB',F:'XXRXBXXXX',R:'YXXXRXXXX',hl:['U8','F2','R0'],size:140}),'Gelb nicht oben')}
+    <div>${tiles(["R'","D'",'R','D'])}<div style="text-align:center;margin-top:8px">${rep('2× oder 4×')}</div></div>
+    ${pic(iso({U:'XYXYYYXYY',F:'XXBXBXXXX',R:'RXXXRXXXX',hl:['U8','F2','R0'],size:140}),'Gelb oben')}
+  </div>
+  <p class="hint" style="text-align:center">Dann <b>nur oben (U)</b> drehen, bis die nächste Ecke vorne rechts ist.<br>Den Würfel selbst nicht drehen!</p>
+  <div class="row">${tiles(['U'])}</div>
+  <hr class="sep">
+  <div class="row">
+    ${pic(iso({U:'YYYYYYYYY',F:'BBBBBBBBB',R:'RRRRRRRRR',size:170}))}
+  </div>
+  <div class="done">🎉 Geschafft! 🎉</div>` });
+
+/* ---------- Seite aufbauen ---------- */
+document.getElementById('nav').innerHTML = steps.map((s,i)=>
+  `<a href="#${s.id}" class="${s.info?'info':''}" aria-label="${s.title}">${s.info?'?':i}</a>`).join('');
+document.getElementById('main').innerHTML = steps.map((s,i)=>
+  `<section class="card" id="${s.id}"><div class="head"><div class="num ${s.info?'info':''}">${s.info?'?':i}</div><h2>${s.title}</h2></div>${s.html}</section>`).join('');
+</script>
+</body>
+</html>
